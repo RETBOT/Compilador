@@ -1,0 +1,70 @@
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\Unidad 1\Nueva carpeta\Arbol\obj\Debug\Arbol.Form.resources
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\Unidad 1\Nueva carpeta\Arbol\obj\Debug\Arbol.Properties.Resources.resources
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\Unidad 1\Nueva carpeta\Arbol\obj\Debug\Arbol.csproj.GenerateResource.cache
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\Unidad 1\Nueva carpeta\Arbol\obj\Debug\Arbol.csproj.CoreCompileInputs.cache
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\Unidad 1\Nueva carpeta\Arbol\bin\Debug\Arbol.exe.config
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\Unidad 1\Nueva carpeta\Arbol\bin\Debug\Arbol.exe
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\Unidad 1\Nueva carpeta\Arbol\bin\Debug\Arbol.pdb
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\Unidad 1\Nueva carpeta\Arbol\obj\Debug\Arbol.exe
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\Unidad 1\Nueva carpeta\Arbol\obj\Debug\Arbol.pdb
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\Unidad 1\Nueva carpeta\Arbol\obj\Debug\Arbol.csproj.AssemblyReference.cache
+C:\Users\Ivan Herrera G\Downloads\PROYECTO\Arbol\bin\Debug\Arbol.exe.config
+C:\Users\Ivan Herrera G\Downloads\PROYECTO\Arbol\bin\Debug\Arbol.exe
+C:\Users\Ivan Herrera G\Downloads\PROYECTO\Arbol\bin\Debug\Arbol.pdb
+C:\Users\Ivan Herrera G\Downloads\PROYECTO\Arbol\obj\Debug\Arbol.csproj.AssemblyReference.cache
+C:\Users\Ivan Herrera G\Downloads\PROYECTO\Arbol\obj\Debug\Arbol.Form.resources
+C:\Users\Ivan Herrera G\Downloads\PROYECTO\Arbol\obj\Debug\Arbol.Properties.Resources.resources
+C:\Users\Ivan Herrera G\Downloads\PROYECTO\Arbol\obj\Debug\Arbol.csproj.GenerateResource.cache
+C:\Users\Ivan Herrera G\Downloads\PROYECTO\Arbol\obj\Debug\Arbol.csproj.CoreCompileInputs.cache
+C:\Users\Ivan Herrera G\Downloads\PROYECTO\Arbol\obj\Debug\Arbol.exe
+C:\Users\Ivan Herrera G\Downloads\PROYECTO\Arbol\obj\Debug\Arbol.pdb
+C:\Users\Ivan Herrera G\Desktop\Lenguaje y automatas 2\PROYECTO\Arbol\obj\Debug\Arbol.csproj.AssemblyReference.cache
+C:\Users\Ivan Herrera G\Desktop\Lenguaje y automatas 2\PROYECTO\Arbol\obj\Debug\Arbol.Form.resources
+C:\Users\Ivan Herrera G\Desktop\Lenguaje y automatas 2\PROYECTO\Arbol\obj\Debug\Arbol.Properties.Resources.resources
+C:\Users\Ivan Herrera G\Desktop\Lenguaje y automatas 2\PROYECTO\Arbol\obj\Debug\Arbol.csproj.GenerateResource.cache
+C:\Users\Ivan Herrera G\Desktop\Lenguaje y automatas 2\PROYECTO\Arbol\obj\Debug\Arbol.csproj.CoreCompileInputs.cache
+C:\Users\Ivan Herrera G\Desktop\Lenguaje y automatas 2\PROYECTO\Arbol\obj\Debug\Arbol.exe
+C:\Users\Ivan Herrera G\Desktop\Lenguaje y automatas 2\PROYECTO\Arbol\obj\Debug\Arbol.pdb
+C:\Users\Ivan Herrera G\Desktop\Lenguaje y automatas 2\PROYECTO\Arbol\bin\Debug\Arbol.exe.config
+C:\Users\Ivan Herrera G\Desktop\Lenguaje y automatas 2\PROYECTO\Arbol\bin\Debug\Arbol.exe
+C:\Users\Ivan Herrera G\Desktop\Lenguaje y automatas 2\PROYECTO\Arbol\bin\Debug\Arbol.pdb
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\PROYECTO\Arbol\obj\Debug\Arbol.Form.resources
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\PROYECTO\Arbol\obj\Debug\Arbol.Properties.Resources.resources
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\PROYECTO\Arbol\obj\Debug\Arbol.csproj.GenerateResource.cache
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\PROYECTO\Arbol\obj\Debug\Arbol.csproj.CoreCompileInputs.cache
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\PROYECTO\Arbol\obj\Debug\Arbol.csproj.AssemblyReference.cache
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\PROYECTO\Arbol\bin\Debug\Arbol.exe.config
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\PROYECTO\Arbol\bin\Debug\Arbol.exe
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\PROYECTO\Arbol\bin\Debug\Arbol.pdb
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\PROYECTO\Arbol\obj\Debug\Arbol.exe
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\PROYECTO\Arbol\obj\Debug\Arbol.pdb
+C:\Users\Ivan Herrera G\Desktop\Arbol-1\Arbol\bin\Debug\Arbol.exe.config
+C:\Users\Ivan Herrera G\Desktop\Arbol-1\Arbol\bin\Debug\Arbol.exe
+C:\Users\Ivan Herrera G\Desktop\Arbol-1\Arbol\bin\Debug\Arbol.pdb
+C:\Users\Ivan Herrera G\Desktop\Arbol-1\Arbol\obj\Debug\Arbol.csproj.AssemblyReference.cache
+C:\Users\Ivan Herrera G\Desktop\Arbol-1\Arbol\obj\Debug\Arbol.Form.resources
+C:\Users\Ivan Herrera G\Desktop\Arbol-1\Arbol\obj\Debug\Arbol.Properties.Resources.resources
+C:\Users\Ivan Herrera G\Desktop\Arbol-1\Arbol\obj\Debug\Arbol.csproj.GenerateResource.cache
+C:\Users\Ivan Herrera G\Desktop\Arbol-1\Arbol\obj\Debug\Arbol.csproj.CoreCompileInputs.cache
+C:\Users\Ivan Herrera G\Desktop\Arbol-1\Arbol\obj\Debug\Arbol.exe
+C:\Users\Ivan Herrera G\Desktop\Arbol-1\Arbol\obj\Debug\Arbol.pdb
+C:\Users\rober\Desktop\corrector errores\Arbol-1\Arbol\bin\Debug\Arbol.exe.config
+C:\Users\rober\Desktop\corrector errores\Arbol-1\Arbol\bin\Debug\Arbol.exe
+C:\Users\rober\Desktop\corrector errores\Arbol-1\Arbol\bin\Debug\Arbol.pdb
+C:\Users\rober\Desktop\corrector errores\Arbol-1\Arbol\obj\Debug\Arbol.Form.resources
+C:\Users\rober\Desktop\corrector errores\Arbol-1\Arbol\obj\Debug\Arbol.Properties.Resources.resources
+C:\Users\rober\Desktop\corrector errores\Arbol-1\Arbol\obj\Debug\Arbol.csproj.GenerateResource.cache
+C:\Users\rober\Desktop\corrector errores\Arbol-1\Arbol\obj\Debug\Arbol.csproj.CoreCompileInputs.cache
+C:\Users\rober\Desktop\corrector errores\Arbol-1\Arbol\obj\Debug\Arbol.exe
+C:\Users\rober\Desktop\corrector errores\Arbol-1\Arbol\obj\Debug\Arbol.pdb
+C:\Users\rober\Desktop\corrector errores\Arbol-1\Arbol\obj\Debug\Arbol.csproj.AssemblyReference.cache
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\corrector errores\Arbol-1\Arbol\bin\Debug\Arbol.exe.config
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\corrector errores\Arbol-1\Arbol\bin\Debug\Arbol.exe
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\corrector errores\Arbol-1\Arbol\bin\Debug\Arbol.pdb
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\corrector errores\Arbol-1\Arbol\obj\Debug\Arbol.Form.resources
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\corrector errores\Arbol-1\Arbol\obj\Debug\Arbol.Properties.Resources.resources
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\corrector errores\Arbol-1\Arbol\obj\Debug\Arbol.csproj.GenerateResource.cache
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\corrector errores\Arbol-1\Arbol\obj\Debug\Arbol.csproj.CoreCompileInputs.cache
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\corrector errores\Arbol-1\Arbol\obj\Debug\Arbol.exe
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\corrector errores\Arbol-1\Arbol\obj\Debug\Arbol.pdb
+C:\Users\rober\Desktop\Séptimo\LENGUAJES Y AUTOMATAS II\corrector errores\Arbol-1\Arbol\obj\Debug\Arbol.csproj.AssemblyReference.cache
