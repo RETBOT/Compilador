@@ -1,4 +1,4 @@
-Proyecto final para la materia de Automatas 2
+# Proyecto final para la materia de Automatas 2
 ![Pantalla principal](https://github.com/RETBOT/Compilador/blob/master/T1.png)
 
 Aplicación en funcionamiento
