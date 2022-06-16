@@ -20,3 +20,5 @@ Funcionamiento de código intermedio
 
 Funcionamiento de código ensamblador
 ![Codigo ensamblador](https://github.com/RETBOT/Compilador/blob/master/Ensa1.png)
+
+Para más información contactar a robertoesquiveltr16@gmail.com
