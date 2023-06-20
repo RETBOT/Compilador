@@ -26,17 +26,39 @@ namespace Arbol
     public class Arbol
     {
         // VARIABLES LOCALES 
-         // VARIABLES LOCALES 
         bool band = false;
+        bool band2 = false;
+        bool band3 = false;
+        bool band4 = false;
         int a = 0;
+        int b = 0;
+        int c = 0;
         string cad = "";
+
         // INSERSION EN COLA// R3TB0T
+        private string precedencia = "><=)+-*/^(";  //Define cual operador aritmetico tiene menor a mayor prioridad
+        private string[] delimitadores = { "=", ")", "+", "-", "*", "/", "^", "(", "{", "}"}; //Define el limite de separacion entre los operadores. 
+        private string[] id = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+        private string[] id2 = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+        private string[] palRes = { "if", "if(" };
+        private char[] cade = { '"' };
+        private string[] num = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         private string[] operandosArray; //Arreglo para los operandos (variables)
         private string[] operadoresArray;
+        private Queue ColaExpresion; //Variable de tipo Cola para insertar la expresion se utiliza en la otra insercion de cola
+        private Queue colaExpresion; //Variable de tipo Cola para insertar la expresion
+        private string blanco = " \t";// R3TB0T
+
         //CREACIÓN DE ÁRBOL
-        private int i = 0; //Define el control de un ciclo
+        private string token; //Almacena el token que se va reconociendo en la expresion
+        private string operadorTemp; //Variable auxiliar o temporal para almacenar un operador
+        private int i = 0; //Define el control de un ciclo // R3TB0T
+        private Stack pilaOperadores; //Variable de tipo Pila para almacenar los operadores cuando se esta creando el arbol
+        private Stack pilaOperandos; //Variable de tipo Pila para almacenar los operandos cuando se esta creando el arbol
         private Stack pilaDot;  //Variable de tipo Pila para almacenar los nodos del arbol
-       
+        private Nodo raiz = null; //Variable para controlar el nodo raiz
+        public Nodo nodoDot { get; set; } // R3TB0T
+        public Nodo NodoDot { get; set; } //Variable de tipo Nodo para almacenar el nodo hijo y permite el acceso libre de los metodos
 
         // PROPIEDADES PARA RECORRIDOS
 
@@ -64,7 +86,6 @@ namespace Arbol
 
         #region OTRA INSERCION EN COLA
         public Nodo crearArbol()
-        
         {
             while (colaExpresion.Count != 0)
             {
@@ -194,19 +215,171 @@ namespace Arbol
 
         #region ARBOL 
         public Nodo CrearArbol() {
-            Nodo raiz = null;
-            return raiz;// R3TB0T
+         // ReT boT
+            while (colaExpresion.Count != 0)
+            {
+                token = (string)colaExpresion.Dequeue();
+                if (blanco.IndexOf(token) >= 0)
+                    ;               // Es un espacio en blanco, se ignora
+                else if (precedencia.IndexOf(token) < 0)
+                {
+                    for (int i = 0; i <= 26; i++)
+                    {   //ciclo para recorrer los identificadores
+                        if (b != 26)
+                        {// ReT boT
+                            if (token.Contains(id[b]) | token.Contains(id2[b]))
+                            {
+                                band = true;
+                            }
+                            b++;
+                        }
+                    }
+                    for (int j = 0; j <= 20; j++) //ciclo para recorrer los numeros
+                    {
+                        if (a != 10)
+                        {
+                            if (token.Contains(num[a]))
+                            {
+                                band2 = true;
+                            }
+                            a++;
+                        }
+                    }
+                    for (int k = 0; k <= 20; k++) //ciclo para recorrer las cadenas
+                    {
+                        if (c != 10)
+                        {// ReT boT
+                            if (token.Contains(cade[c].ToString()))
+                            {
+                                band3 = true;
+                            }
+                            a++;
+                        }
+                    }
+
+
+                    //Condiciones para establecer si es un Id, Numero o Cadena:
+                    if (band == true)
+                    {
+                        cad = token;
+                        token = "Id";
+// ReT boT
+                    }
+
+                    if (band2 == true)
+                    {
+                        cad = token;
+                        token = "Numero";
+
+                    }
+                    if (band3 == true)
+                    {
+                        token = "Cadena";
+
+                    }
+
+                    a = 0;
+                    b = 0;
+                    band = false;
+                    band2 = false;
+                    band3 = false;// ReT boT
+                    // Es operando y lo guarda como nodo del arbol
+                    pilaOperandos.Push(new Nodo(token));
+                    pilaDot.Push(new Nodo($"nodo{++i}[label = \"{token}\"]")); //Inserta el numero del nodo y el token a la pila
+                }
+                else if (token.Equals(")"))
+                { // Saca elementos hasta encontrar (
+                    while (pilaOperadores.Count != 0 && pilaOperadores.Peek().Equals("("))
+                    {
+                        GuardarSubArbol();
+                    }
+                    GuardarSubArbol();
+                    pilaOperadores.Pop();  // Saca el parentesis izquierdo
+                }
+                else// ReT boT
+                {
+                    if (!token.Equals("(") && pilaOperadores.Count != 0)
+                    {
+                        //operador diferente de cualquier parentesis
+                        operadorTemp = (string)pilaOperadores.Peek();
+                        while (!operadorTemp.Equals("(") && pilaOperadores.Count != 0 && precedencia.IndexOf(operadorTemp) >= precedencia.IndexOf(token))
+                        {
+                            GuardarSubArbol();
+                            if (pilaOperadores.Count != 0)
+                                operadorTemp = (string)pilaOperadores.Peek();
+                        }
+                    }
+                    pilaOperadores.Push(token);  //Guarda el operador
+                }
+            }
+            //Sacar todo lo que queda
+            raiz = (Nodo)pilaOperandos.Peek();
+            nodoDot = (Nodo)pilaDot.Peek();// ReT boT
+            while (pilaOperadores.Count != 0)
+            {
+                if (pilaOperadores.Peek().Equals("("))
+                {
+                    pilaOperadores.Pop();
+                }// ReT boT
+                else
+                {
+                    GuardarSubArbol();
+                    raiz = (Nodo)pilaOperandos.Peek();
+                    nodoDot = (Nodo)pilaDot.Peek();
+                }
+            }
+            return raiz;
         }
 
         private void Insertar(Nodo ar, string cad)
-        {
-        }// R3TB0T
+        {// R3TB0T
+
+            if (ar == null)
+            {
+                Nodo nuevo = new Nodo(cad);
+                ar = nuevo;
+                pilaOperadores.Push(cad);
+                pilaOperandos.Push(nuevo);
+                pilaOperandos.Push(nuevo);
+                pilaDot.Push(new Nodo($"nodo{++i}[label = \"{cad}\"]"));
+                pilaDot.Push(new Nodo($"nodo{++i}[label = \"{cad}\"]"));
+
+                GuardarSubArbol();// R3TB0T
+            }
+            else
+            {
+                string valorRaiz = ar.Datos.ToString();
+                if (cad != valorRaiz)
+                {
+                    Insertar(ar.NodoIzquierdo, cad);
+                }
+                else// R3TB0T
+                {
+                    Insertar(ar.NodoDerecho, cad);
+                }
+            }
+        }
 
         private void GuardarSubArbol() {
-        }// R3TB0T
+            Nodo derecho = (Nodo)pilaOperandos.Pop();
+            Nodo izquierdo = (Nodo)pilaOperandos.Pop();
+            pilaOperandos.Push(new Nodo(derecho, izquierdo, pilaOperadores.Peek()));
+// R3TB0T
+            Nodo derechoG = (Nodo)pilaDot.Pop();
+            Nodo izquierdoG = (Nodo)pilaDot.Pop();
+            pilaDot.Push(new Nodo(derechoG, izquierdoG, $"nodo{++i}[label=\"{pilaOperadores.Pop()}\"]"));
+        }
 
         private void GuardaSubArbol()
-        {// R3TB0T
+        {
+            Nodo derecho = (Nodo)pilaOperandos.Pop();
+            Nodo izquierdo = (Nodo)pilaOperandos.Pop();
+            pilaOperandos.Push(new Nodo(derecho, izquierdo, pilaOperadores.Peek()));
+
+            Nodo derechoG = (Nodo)pilaDot.Pop();// R3TB0T
+            Nodo izquierdoG = (Nodo)pilaDot.Pop();
+            pilaDot.Push(new Nodo(derechoG, izquierdoG, $"nodo{++i}[label=\"{pilaOperadores.Pop()}\"]"));
+
         }
         #endregion
 
@@ -216,7 +389,7 @@ namespace Arbol
                 cadenaPreorden += tree.Datos + " ";
                 InsertaPre(tree.NodoIzquierdo);
                 InsertaPre(tree.NodoDerecho);
-            }
+            }// R3TB0T
 
             return cadenaPreorden;
 
@@ -228,7 +401,7 @@ namespace Arbol
                 cadenaInorden += tree.Datos + " ";
                 InsertaIn(tree.NodoDerecho);
             }
-            return cadenaInorden;
+            return cadenaInorden;// R3TB0T
         }
 
         //POSTORDEN   
@@ -244,7 +417,7 @@ namespace Arbol
         }
         #endregion
 
-        #region LIMPIAR 
+        #region LIMPIAR // R3TB0T
          public void Limpiar() {
             cadenaPreorden = "";
             cadenaInorden = "";// R3TB0T
@@ -322,7 +495,7 @@ namespace Arbol
                     b = 0;
                     band = false;
                     band2 = false;
-                    band3 = false;
+                    band3 = false;// R3TB0T
                     // Es operando y lo guarda como nodo del arbol
                     pilaOperandos.Push(new Nodo(token));
                     pilaDot.Push(new Nodo($"nodo{++i}[label = \"{token}\"]")); //Inserta el numero del nodo y el token a la pila
@@ -366,7 +539,7 @@ namespace Arbol
                     GuardarSubArbol();
                     raiz = (Nodo)pilaOperandos.Peek();
                     nodoDot = (Nodo)pilaDot.Peek();
-                }
+                }// R3TB0T
             }
             return raiz;
         }// R3TB0T

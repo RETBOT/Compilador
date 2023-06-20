@@ -34,8 +34,16 @@ namespace Arbol
         #region CONSTRUCTORES
 
         //CONSTRUCTOR CON EL PARAMETRO DE Name, Lexema, Index, Linea y Columna.
-        public Token(string name)
-        {
+        public Token(string name, string lexema, int index, int linea, int columna, string tipoDato, int IdTabla, int Tabla_Padre)
+        { /*R*E*T*B*O*T*/
+            Name = name;
+            Lexema = lexema;
+            Index = index;
+            Linea = linea;
+            Columna = columna;
+            TipoDato = tipoDato;
+            IDTabla = IdTabla;
+            TablaPadre = Tabla_Padre;
         }
         #endregion
 
@@ -48,13 +56,13 @@ namespace Arbol
         public string Name { get; set; }
         public string Lexema { get; private set; }
 
-        public int Index { get; private set; }
+        public int Index { get; private set; }/*R*E*T*B*O*T*/
         public int Linea { get; private set; }
         public int Columna { get; private set; }
         public string TipoDato { get; private set; }
         public int IDTabla { get; private set; }
         public int TablaPadre { get; private set; }
-
+/*R*E*T*B*O*T*/
         public int Lenght { get { return Lexema.Length; } }
 
         #endregion

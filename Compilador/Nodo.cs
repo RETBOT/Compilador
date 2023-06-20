@@ -29,7 +29,7 @@ namespace Arbol
         private Object datos; //Son los datos que se van a ir generando respecto al nodo
         private Nodo nodoIzquierdo;
         private Nodo nodoDerecho;
-        #endregion
+        #endregion // >>RET-BOT<<
 
         //************************************************************************************************************
         // Constructores
@@ -37,7 +37,7 @@ namespace Arbol
         #region CONSTRUCTORES
 
         //Constructor sin parametros
-        public Nodo()
+        public Nodo()// >>RET-BOT<<
         {
             nodoDerecho = nodoIzquierdo = null;
         }
@@ -53,7 +53,7 @@ namespace Arbol
             this.nodoDerecho = derecho;
             this.nodoIzquierdo = izquierdo;
             this.datos = valor;
-        }
+        }// >>RET-BOT<<
 
         #endregion
 
@@ -69,7 +69,7 @@ namespace Arbol
         public Nodo NodoIzquierdo { get => nodoIzquierdo; set => nodoIzquierdo = value; }
 
         //NODO DERECHO
-        /// <summary>
+        /// <summary>// >>RET-BOT<<
         /// Método para utilizar las propiedades del nodo derecho.
         /// Contiene funciones para obtener o asignar el valor al nodo.
         /// </summary>
@@ -82,7 +82,7 @@ namespace Arbol
         /// </summary>
         public Object Datos { get => datos; set => datos = value; }
         #endregion
-
+// >>RET-BOT<<
 
     }
 }

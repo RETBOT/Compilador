@@ -521,16 +521,16 @@ namespace Arbol
         /// </summary>// R3T B0T
         public static void ShowTree(PictureBox pbImagen)
         {
-            if (File.Exists(@"C:\\Users\\rober\\Imagen.png")) // modificar con el path de su perfil 
+            if (File.Exists(@"C:\\Users\\user\\Imagen.png")) // modificar con el path de su pc 
             {// R3T B0T
-                using (FileStream img = new FileStream(@"C:\\Users\\rober\\Imagen.png", FileMode.Open, FileAccess.Read)) // modificar con el path de su perfil 
+                using (FileStream img = new FileStream(@"C:\\Users\\user\\Imagen.png", FileMode.Open, FileAccess.Read)) // modificar con el path de su pc 
                 {
                     pbImagen.Image = Bitmap.FromStream(img);
                 }// R3T B0T
             }
             else
             {// R3T B0T
-                MessageBox.Show("No se ha podido abrir el archivo", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se haC:\\Users\\user\\Imagen.png podido abrir el archivo", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             pbImagen.Refresh();
         }
@@ -667,7 +667,322 @@ namespace Arbol
         /// </summary>
         public static void lexico(ListView listViewError, List<String> contenido)
         {
-            // RETBOT robertoesquiveltr16@gmail.com
+            //listViewError.Items.Clear(); 
+            string[] palabrasResevadasBasicas = { "int", "string", "double", "char", "float", "bool" };
+            RegexLexer csIdentificador = new RegexLexer();
+            int linea = 0;
+
+            Regex rgxId = new Regex(@"\b[_a-zA-Z][\w]*\b");
+            Regex rgxNumEnteros = new Regex(@"^-?[0-9]+$"); // RetBot
+            Regex rgxNumDoubles = new Regex(@"\d+\.\d");
+            Regex rgxNumFloatInt = new Regex(@"^-?[0-9]+[fF?]+$");
+            Regex rgxNumFloatDec = new Regex(@"\d+\.\d+[fF?]+$");
+            Regex rgxString = new Regex("\".*?\"");
+            Regex rgxChar = new Regex(@"'\\.'|'[^\\]'");
+
+            foreach (String s in contenido)
+            {
+                linea++;
+                int tam = 0;
+                int d = 0;
+                string ultElem = "";
+                string el = "";
+                bool control = false;
+                bool controlDato = false;
+                for (int i = 0; i < palabrasResevadasBasicas.Length; i++)
+                {
+                    if (s.Contains(palabrasResevadasBasicas[i]))
+                    {
+                        for (int q = 0; q < s.Length; q++)
+                        {
+                            if (s[q] == ' ')
+                                tam++;
+                        }
+                        string[] arrReservadas = new string[tam + 2];
+                        for (int q = 0; q < s.Length; q++)
+                        {
+                            if (control == true)// RetBot
+                            {
+                                if (s[q] == ' ')
+                                {
+                                    arrReservadas[d] = el;
+                                    el = "";
+                                    d++;
+                                    float h = 10;
+                                }
+                            }
+                            if (s[q] == ' ' && el == "int" | el == "double" | el == "float" | el == "char" | el == "string")
+                            {
+                                control = true;
+                                arrReservadas[d] = el;
+                                el = "";
+                                d++;
+                            }
+                            else
+                            {
+                                el += s[q];
+                                if (el.Contains(";"))
+                                {
+                                    q = s.Length - 1;
+                                }
+                                if (s[q] == ' ')// RetBot
+                                {
+                                    el = "";
+                                }
+                            }
+                        }
+                        arrReservadas[d] = el;
+                        //arrReservadas = s.Split(' ');
+                        foreach (char c in arrReservadas[d])
+                        {
+                            if (c == ';')
+                            {
+                                arrReservadas[d + 1] = ";";
+                            }
+                            else
+                            {
+                                ultElem += c;
+                                arrReservadas[d] = ultElem;
+                            }
+                        }
+                        for (int k = 0; k < arrReservadas.Length; k++)
+                        {
+                            if (arrReservadas[k] == "int" | arrReservadas[k] == "string" | arrReservadas[k] == "double" | arrReservadas[k] == "float" | arrReservadas[k] == "char" && rgxId.IsMatch(arrReservadas[k + 1]))
+                            {
+                                if (arrReservadas[k + 2] == "=" | arrReservadas[k + 2] == ";")
+                                {
+                                    //MessageBox.Show("Expresion correcta");
+                                    if (arrReservadas[k + 2] == "=")
+                                    {
+                                        switch (arrReservadas[k])
+                                        {
+                                            case "int":// RetBot
+                        // RetBot                        {
+                                                    if (arrReservadas[arrReservadas.Length - 1] == ";" | arrReservadas[d + 1] == ";")
+                                                    {
+                                                        for (int u = 0; u < arrReservadas.Length; u++)
+                                                        {
+                                                            var isNumericI = int.TryParse(arrReservadas[u], out int n);
+                                                            var isNumericD = double.TryParse(arrReservadas[u], out double n2);
+                                                            if (isNumericI == true | isNumericD == true)
+                                                            {
+                                                                controlDato = true;
+                                                            }
+                                                            if (rgxNumEnteros.IsMatch(arrReservadas[u]))
+                                                            {
+                                                                controlDato = false;
+                                                            }
+                                                            if (arrReservadas[u] == ";")
+                                                            {
+                                                                u = arrReservadas.Length - 1;
+                                                            }
+                                                            else if (controlDato == true)
+                                                            {
+                                                                ListViewItem error = new ListViewItem(linea.ToString());
+                                                                error.SubItems.Add("Semantico");
+                                                                error.SubItems.Add("Int: El valor no corresponde al tipo de dato.");
+                                                                listViewError.Items.Add(error).BackColor = Color.FromArgb(247, 75, 64);
+                                                                u = arrReservadas.Length - 1;
+                                                                //listViewError.ForeColor = Color.Blue; pinta las letras
+                                                            }
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        ListViewItem error = new ListViewItem(linea.ToString());
+                                                        error.SubItems.Add("Semántico");
+                                                        error.SubItems.Add("Falta agregar ; en la expresion");
+                                                        listViewError.Items.Add(error).BackColor = Color.FromArgb(247, 75, 64);
+                                                    }// RetBot
+                                                }
+                                                break;
+                                            case "double":
+                                                {
+                                                    if (arrReservadas[arrReservadas.Length - 1] == ";" | arrReservadas[d + 1] == ";")
+                                                    {
+                                                        for (int u = 0; u < arrReservadas.Length; u++)
+                                                        {
+                                                            var isNumericI = int.TryParse(arrReservadas[u], out int n);
+                                                            var isNumericD = double.TryParse(arrReservadas[u], out double n2);
+                                                            if (isNumericI == true | isNumericD == true)
+                                                            {
+                                                                controlDato = true;
+                                                            }
+                                                            if (rgxNumDoubles.IsMatch(arrReservadas[u]))
+                                                            {
+                                                                controlDato = false;
+                                                            }
+                                                            else if (controlDato == true)
+                                                            {
+                                                                ListViewItem error = new ListViewItem(linea.ToString());
+                                                                error.SubItems.Add("Semántico");
+                                                                error.SubItems.Add("Double: El valor no corresponde al tipo de dato.");
+                                                                listViewError.Items.Add(error).BackColor = Color.FromArgb(247, 75, 64);
+                                                                u = arrReservadas.Length - 1;
+                                                            }
+                                                        }
+                                                    }
+                                                    else
+                                                    {// RetBot
+                                                        ListViewItem error = new ListViewItem(linea.ToString());
+                                                        error.SubItems.Add("Semántico");
+                                                        error.SubItems.Add("Falta agregar ; en la expresion");
+                                                        listViewError.Items.Add(error).BackColor = Color.FromArgb(247, 75, 64);
+                                                    }
+                                                }
+                                                break;
+                                            case "float":
+                                                {
+                                                    if (arrReservadas[arrReservadas.Length - 1] == ";" | arrReservadas[d + 1] == ";")
+                                                    {
+                                                        for (int u = 0; u < arrReservadas.Length; u++)
+                                                        {
+                                                            var isNumericI = int.TryParse(arrReservadas[u], out int n);
+                                                            var isNumericD = double.TryParse(arrReservadas[u], out double n2);
+                                                            if (isNumericI == true | isNumericD == true)
+                                                            {
+                                                                controlDato = true;
+                                                            }
+                                                            if (rgxNumFloatInt.IsMatch(arrReservadas[u]) | rgxNumEnteros.IsMatch(arrReservadas[u]) | rgxNumFloatDec.IsMatch(arrReservadas[u]))
+                                                            {
+                                                                controlDato = false;
+                                                            }
+                                                            else if (controlDato == true)
+                                                            {
+                                                                ListViewItem error = new ListViewItem(linea.ToString());
+                                                                error.SubItems.Add("Semántico");
+                                                                error.SubItems.Add("Float: El valor no corresponde al tipo de dato.");
+                                                                listViewError.Items.Add(error).BackColor = Color.FromArgb(247, 75, 64);
+                                                                u = arrReservadas.Length - 1;
+                                                                //listViewError.ForeColor = Color.Blue; pinta las letras
+                                                            }
+                                                        }
+                                                    }
+                                                    else
+                                                    {// RetBot
+                                                        ListViewItem error = new ListViewItem(linea.ToString());
+                                                        error.SubItems.Add("Semántico");
+                                                        error.SubItems.Add("Falta agregar ; en la expresion");
+                                                        listViewError.Items.Add(error).BackColor = Color.FromArgb(247, 75, 64);
+                                                    }
+                                                }
+                                                break;
+                                            case "string":
+                                                {
+                                                    if (arrReservadas[arrReservadas.Length - 1] == ";" | arrReservadas[d + 1] == ";")
+                                                    {
+                                                        for (int u = 0; u < arrReservadas.Length; u++)
+                                                        {
+                                                            var isNumericI = int.TryParse(arrReservadas[u], out int n);
+                                                            var isNumericD = double.TryParse(arrReservadas[u], out double n2);
+                                                            if (isNumericI == true | isNumericD == true | arrReservadas[u].Contains('"'))
+                                                            {
+                                                                controlDato = true;
+                                                            }
+                                                            if (rgxString.IsMatch(arrReservadas[u]))
+                                                            {// RetBot
+                                                                controlDato = false;
+                                                            }
+                                                            else if (controlDato == true)
+                                                            {
+                                                                ListViewItem error = new ListViewItem(linea.ToString());
+                                                                error.SubItems.Add("Semántico");
+                                                                error.SubItems.Add("String: El valor no corresponde al tipo de dato.");
+                                                                listViewError.Items.Add(error).BackColor = Color.FromArgb(247, 75, 64);
+                                                                u = arrReservadas.Length - 1;
+                                                            }
+                                                        }
+                                                    }
+
+                                                    else
+                                                    {
+                                                        ListViewItem error = new ListViewItem(linea.ToString());
+                                                        error.SubItems.Add("Semántico");
+                                                        error.SubItems.Add("Falta agregar ; en la expresion");
+                                                        listViewError.Items.Add(error).BackColor = Color.FromArgb(247, 75, 64);
+                                                    }
+                                                }
+                                                break;
+                                            case "char":
+                                                {
+                                                    if (arrReservadas[arrReservadas.Length - 1] == ";" | arrReservadas[d + 1] == ";")
+                                                    {
+                                                        for (int u = 0; u < arrReservadas.Length; u++)
+                                                        {
+
+                                                            if (arrReservadas[arrReservadas.Length - 1] != ";")
+                                                            {// Ret-Bot
+                                                                ListViewItem error = new ListViewItem(linea.ToString());
+                                                                error.SubItems.Add("Semántico");
+                                                                error.SubItems.Add("Falta agregar ; en la expresion");
+                                                                u = arrReservadas.Length - 1;
+                                                                listViewError.Items.Add(error).BackColor = Color.FromArgb(247, 75, 64);
+                                                            }
+                                                            if (controlDato == false && arrReservadas[u] == ";")
+                                                            {// RetBot
+                                                                ListViewItem error = new ListViewItem(linea.ToString());
+                                                                error.SubItems.Add("Semántico");
+                                                                error.SubItems.Add("Char: El valor no corresponde al tipo de dato.");
+                                                                listViewError.Items.Add(error).BackColor = Color.FromArgb(247, 75, 64);
+                                                            }
+                                                            var isNumericI = int.TryParse(arrReservadas[u], out int n);
+                                                            var isNumericD = double.TryParse(arrReservadas[u], out double n2);
+                                                            if (isNumericI == true | isNumericD == true | arrReservadas[u].Contains("'"))
+                                                            {
+                                                                controlDato = true;
+                                                            }
+                                                            if (rgxChar.IsMatch(arrReservadas[u]))
+                                                            {
+                                                                controlDato = false;
+                                                                break;
+                                                            }
+                                                            else if (controlDato == true)
+                                                            {// RetBots
+                                                                ListViewItem error = new ListViewItem(linea.ToString());
+                                                                error.SubItems.Add("Semántico");
+                                                                error.SubItems.Add("Char: El valor no corresponde al tipo de dato.");
+                                                                listViewError.Items.Add(error).BackColor = Color.FromArgb(247, 75, 64);
+                                                                u = arrReservadas.Length - 1;
+                                                                //listViewError.ForeColor = Color.Blue; pinta las letras
+                                                            }
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        ListViewItem error = new ListViewItem(linea.ToString());
+                                                        error.SubItems.Add("Semántico");
+                                                        error.SubItems.Add("Falta agregar ; en la expresion");
+                                                        listViewError.Items.Add(error).BackColor = Color.FromArgb(247, 75, 64);
+                                                    }
+                                                }
+                                                break;
+
+                                        }
+                                    }
+                                }
+                                else
+                                {// Ret--Bot
+                                    ListViewItem error = new ListViewItem(linea.ToString());
+                                    error.SubItems.Add("Léxico");
+                                    error.SubItems.Add("Identificador mal definido: verifica el nombre de la variable.");
+                                    listViewError.Items.Add(error).BackColor = Color.FromArgb(247, 75, 64);
+                                }
+                                k = arrReservadas.Length - 1;
+                            }
+                            else
+                            {
+                                ListViewItem error = new ListViewItem(linea.ToString());
+                                error.SubItems.Add("Léxico");
+                                error.SubItems.Add("Tipo de dato: declara el nombre del dato.");
+                                listViewError.Items.Add(error).BackColor = Color.FromArgb(247, 75, 64);
+                                k = arrReservadas.Length - 1;
+                            }
+
+                        }
+                        i = palabrasResevadasBasicas.Length - 1;
+                    }// RetBot
+                }
+            }
         }
         #endregion
     }

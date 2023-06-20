@@ -29,11 +29,17 @@ namespace Arbol
     {
         #region CAMPOS DE CLASE
         //VARIABLES USADAS EN LA CLASE GRAFICO
-        #endregion
+        private Nodo arbol; // --RET--BOT--
+        private string path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+
+        private string command = @"/c Batch.bat";
+        private int i, j;
+        #endregion// --RET--BOT--
 
         #region CONSTRUCTORES
         //CONSTRUCTOR QUE RECIBE UN PARAMETRO DEL TIPO NODO
         public Grafico(Nodo arbol) {
+            this.arbol = arbol;
         }
         #endregion
 
@@ -44,6 +50,8 @@ namespace Arbol
 
         public void DrawTree() {
             // DIBUJA EL ARBOL
+            CreateFileDot();// --RET--BOT--
+            ExecuteDot();
         }
 
         /// <summary>
@@ -51,7 +59,14 @@ namespace Arbol
         /// </summary>
         /// <return> Regresa el valor de la cadena</return>
         private string CreateFileDot() {
-            return "";
+            //FUNCION UTILIZADA PARA LA ESCRITURA EN EL ARCHIVO IMAGEN.PNG
+            string cadenaDot = "";
+            StartFileDot(arbol, ref cadenaDot);
+            using (StreamWriter archivo = new StreamWriter(path + @"\Arbol.dot")) {
+                archivo.WriteLine(cadenaDot);
+                archivo.Close();
+            }// --RET--BOT--
+            return cadenaDot;
         }
 
         /// <summary>
@@ -60,21 +75,54 @@ namespace Arbol
         /// <param name="arbol">Es el nodo del árbol.</param>
         /// <param name="cadenaDot">Es la referencia donde se esta creando el gráfico segun sus propiedades.</param>
         private void StartFileDot(Nodo arbol, ref string cadenaDot) {
+            //FUNCION PARA DEFINIR EL ESTILO Y COLOR DEL DIBUJO
+            if (arbol != null) {
+                cadenaDot += "digraph Grafico {\nnode [style=blod, fillcolor=gray];\n";
+                Recorrido(arbol, ref cadenaDot);
+                cadenaDot += "\n}";
+            }
         }
-
+// --RET--BOT--
         /// <summary>
         /// Método que nos permite realizar el recorrido del árbol. 
         /// </summary>
         /// <param name="arbol">Es el nodo del árbol.</param>
         /// <param name="cadenaDot">Es la referencia donde se esta creando el gráfico segun sus propiedades.</param>
         private void Recorrido(Nodo arbol, ref string cadenaDot) { 
+            // FUNCION QUE DIBUJA LOS TRAZOS QUE VA TENIENDO EL ARBOL
+            if (arbol != null) {
+                cadenaDot += $"{arbol.Datos}\n";
+                if (arbol.NodoIzquierdo != null) {
+                    i = arbol.Datos.ToString().IndexOf("[");
+                    j = arbol.NodoIzquierdo.Datos.ToString().IndexOf("[");
+                    cadenaDot += $"{arbol.Datos.ToString().Remove(i)}->{arbol.NodoIzquierdo.Datos.ToString().Remove(j)};\n";
+                }// --RET--BOT--
+                if (arbol.NodoDerecho != null)
+                {
+                    i = arbol.Datos.ToString().IndexOf("[");
+                    j = arbol.NodoDerecho.Datos.ToString().IndexOf("[");
+                    cadenaDot += $"{arbol.Datos.ToString().Remove(i)}->{arbol.NodoDerecho.Datos.ToString().Remove(j)};\n";
+                }
+                Recorrido(arbol.NodoIzquierdo, ref cadenaDot);
+                Recorrido(arbol.NodoDerecho, ref cadenaDot);
+            }
         }
 
         /// <summary>
         /// Método que nos permite ejecutar el proceso para que el cmd nos genere el archivo imagen. 
         /// </summary>
         private void ExecuteDot() {
-        }
+            // EJECUTA UN TERMINAL CMD EN LO QUE REALIZA LOS PROCESOS INDICADOS EN EL METODOS
+            Directory.SetCurrentDirectory(path);// --RET--BOT--
+            using (Process proceso = new Process()) {
+                ProcessStartInfo Info = new ProcessStartInfo("cmd",command);
+                Info.CreateNoWindow = true;
+                proceso.StartInfo = Info;
+                proceso.Start();
+                proceso.WaitForExit();
+                proceso.Close();
+            }
+        }// --RET--BOT--
         #endregion 
     }
 }
